@@ -169,7 +169,7 @@ def youtube2mp3 (url,outdir,fname,Token):
         fname=cwd+"/audio/"+fname+'/'+fname+'.wav'
         out=cwd+'/audio/'
         subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "wav", "-o", out], capture_output=True)
-        directory = '/app'
+        directory = '/app/ytdl'
         with os.scandir(directory) as entries:
           for entry in entries:
             if entry.is_file():
