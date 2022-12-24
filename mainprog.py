@@ -38,7 +38,7 @@ proc = subprocess.Popen('conda install librosa',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
-proc = subprocess.Popen('conda install -c conda-forge librosa',
+proc = subprocess.Popen('sudo apt-get install ffmpeg',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
