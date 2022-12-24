@@ -7,3 +7,4 @@ pandas
 scipy
 streamlit
 ffmpeg
+ffmpeg-python
