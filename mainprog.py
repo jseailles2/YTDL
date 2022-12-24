@@ -216,7 +216,7 @@ def youtube2mp3 (url,outdir,fname,Token):
         out=cwd+'/audio/'
         list1 = get_file_list(cwd)
         #subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
-        proc = subprocess.Popen('spleeter separate '+ fname +" -p spleeter:5stems -c mp3 -o out",
+        proc = subprocess.Popen('spleeter separate /app/ytdl/audio/aO_nmfMc2y4/aO_nmfMc2y4.mp3 -p spleeter:5stems -c mp3 -o /app/ytdl/audio/aO_nmfMc2y4",
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
