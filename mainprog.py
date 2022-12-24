@@ -223,7 +223,7 @@ def youtube2mp3 (url,outdir,fname,Token):
         
         list2 = get_file_list(cwd)
         compare_lists(list1, list2)
-        audio_file = open(fname+'.mp3', 'rb')
+        audio_file = open(fname, 'rb')
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format='mp3')
         user_input=st.text_input(fname)
