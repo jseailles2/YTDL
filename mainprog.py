@@ -70,7 +70,7 @@ def list_files(startpath):
         subindent = ' ' * 4 * (level + 1)
         for f in files:
             print('{}{}'.format(subindent, f))
-            st.write(subindent +' // ' + f + ' // ' os.path.basename(root))
+            st.write(subindent +' // ' + f + ' // ' + os.path.basename(root))
 
 
 
