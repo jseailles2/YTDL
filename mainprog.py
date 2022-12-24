@@ -22,6 +22,16 @@ proc = subprocess.Popen('pip install urllib',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
+proc = subprocess.Popen('sudo apt update',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+proc = subprocess.Popen('sudo apt install ffmpeg',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+
+
 
 
 
