@@ -6,7 +6,7 @@ proc = subprocess.Popen('pip install numba',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
-proc = subprocess.Popen('pip install spleeter',
+proc = subprocess.Popen('-m pip install spleeter',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
