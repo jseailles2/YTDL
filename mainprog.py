@@ -62,6 +62,18 @@ def save(fname,TOKEN):
   subprocess.run(['git' ,'push',  'https://iwantthatresult:'+TOKEN+'@github.com/iwantthatresult/ytdlspleeter.git'])
   os.chdir(savecwd)
 #--------------------------------------------------
+def list_files(startpath):
+    for root, dirs, files in os.walk(startpath):
+        level = root.replace(startpath, '').count(os.sep)
+        indent = ' ' * 4 * (level)
+        print('{}{}/'.format(indent, os.path.basename(root)))
+        subindent = ' ' * 4 * (level + 1)
+        for f in files:
+            print('{}{}'.format(subindent, f))
+
+
+
+
 def extract_features_orig(file_path,total=False):
   # Load the audio file
   audio, sample_rate = librosa.load(file_path)
@@ -169,12 +181,8 @@ def youtube2mp3 (url,outdir,fname,Token):
         fname=cwd+"/audio/"+fname+'/'+fname+'.wav'
         out=cwd+'/audio/'
         subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "wav", "-o", out], capture_output=True)
-        directory = '/app/ytdl'
-        with os.scandir(out) as entries:
-          for entry in entries:
-            if entry.is_file():
-              print(f'{entry.name} ({entry.stat().st_size} bytes)')
-              st.write(entry.name)
+        
+        list_files('/app')
         #--------------------------------------------------
         dfinfo=ytdata(url)
         df1=extract_features_orig(fname)
