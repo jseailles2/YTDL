@@ -174,21 +174,23 @@ def youtube2mp3 (url,outdir,fname,Token):
     ##@ Downloadthe file
     out_file = video.download(output_path=outdir,filename=fname)
     base, ext = os.path.splitext(out_file)
-    new_file = Path(f'{base}.wav')
+    new_file = Path(f'{base}.mp3')
     os.rename(out_file, new_file)
     ##@ Check success of download
     if new_file.exists():
         print(f'{yt.title} has been successfully downloaded.')
         idsave=fname
-        fnamesave=fname+'.wav'
+        fnamesave=fname+'.mp3'
           #--------------------------------------------------
         fext=cwd+"/audio/"+fname+'/'
           #--------------------------------------------------
-        fname=cwd+"/audio/"+idsave+'/'+idsave+'.wav'
+        fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
-        st.write('voici le cwd mon gars //'+cwd ) 
-        subprocess.run(['python','-m',"spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "wav"], capture_output=True)
-        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "wav"], capture_output=True)
+        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
+        audio_file = open(fname, 'rb')
+        audio_bytes = audio_file.read()
+        st.audio(audio_bytes, format='mp3')
+        user_input=st.text_input(fname)
         
         list_files(out)
         list_files(fname)
