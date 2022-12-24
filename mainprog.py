@@ -79,6 +79,34 @@ def list_directories(startpath):
 
 
 
+def get_file_list(directory):
+    # Create an empty list to store the names of the files
+    file_list = []
+
+    # Use the os.listdir() function to get a list of all the files in the directory
+    for filename in os.listdir(directory):
+        file_list.append(filename)
+
+    return file_list
+
+def compare_lists(list1, list2):
+    # Create an empty list to store the names of any new files
+    new_files = []
+
+    # Iterate over both lists and compare the elements
+    for file in list1:
+        if file not in list2:
+            new_files.append(file)
+
+    # If there are any new files, print their names
+    if len(new_files) > 0:
+        print("New files:")
+        for file in new_files:
+           st.write(file)
+    else:
+        st.write("No new files")
+
+
 
 def extract_features_orig(file_path,total=False):
   # Load the audio file
@@ -186,12 +214,16 @@ def youtube2mp3 (url,outdir,fname,Token):
           #--------------------------------------------------
         fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
+        list1 = get_file_list(cwd)
         #subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
         proc = subprocess.Popen('spleeter separate '+ fname +" -p spleeter:5stems -c mp3 -o out",
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
-        audio_file = open(fext+'vocals.mp3', 'rb')
+        
+        list2 = get_file_list(cwd)
+        compare_lists(list1, list2)
+        audio_file = open(fname+'.mp3', 'rb')
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format='mp3')
         user_input=st.text_input(fname)
