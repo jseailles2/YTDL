@@ -178,14 +178,14 @@ def youtube2mp3 (url,outdir,fname,Token):
           #--------------------------------------------------
         fext=cwd+"/audio/"+fname+'/'
           #--------------------------------------------------
-        fname=cwd+"/audio/"+fname+'/'+fname+'.wav'
+        fname=cwd+"/audio/"+idsave+'/'+idsave+'.wav'
         out=cwd+'/audio/'
         st.write('voici le cwd mon gars //'+cwd ) 
         subprocess.run(['python','-m',"spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "wav"], capture_output=True)
         subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "wav"], capture_output=True)
         
         list_files(out)
-        list_files(cwd)
+        list_files(fname)
         #--------------------------------------------------
         dfinfo=ytdata(url)
         df1=extract_features_orig(fname)
