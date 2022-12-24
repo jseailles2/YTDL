@@ -1,4 +1,3 @@
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'streamlit','librosa','numba'])
 import sys
 import subprocess
 import pkg_resources
