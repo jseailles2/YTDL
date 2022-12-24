@@ -1,6 +1,10 @@
 import sys
 import subprocess
 import pkg_resources
+proc = subprocess.Popen('sudo apt update',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
 subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','streamlit','librosa','numba'])
 proc = subprocess.Popen('pip install numba',
                         shell=True, stdin=subprocess.PIPE,
@@ -19,10 +23,6 @@ proc = subprocess.Popen('pip install pytube3 --upgrade',
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
 proc = subprocess.Popen('pip install urllib',
-                        shell=True, stdin=subprocess.PIPE,
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE)
-proc = subprocess.Popen('sudo apt update',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
