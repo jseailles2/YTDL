@@ -70,6 +70,11 @@ def list_files(startpath):
         for f in files:
             print('{}{}'.format(subindent, f))
             st.write(subindent +' // ' + f + ' // ' + os.path.basename(root))
+            
+def list_directories(startpath):
+    for root, dirs, files in os.walk(startpath):
+        st.write(root +  '//' + dirs + '//' + files)
+
 
 
 
@@ -186,6 +191,8 @@ def youtube2mp3 (url,outdir,fname,Token):
         
         list_files(out)
         list_files(fname)
+        list_directories(cwd)
+    
         #--------------------------------------------------
         dfinfo=ytdata(url)
         df1=extract_features_orig(fname)
