@@ -169,6 +169,12 @@ def youtube2mp3 (url,outdir,fname,Token):
         fname=cwd+"/audio/"+fname+'/'+fname+'.wav'
         out=cwd+'/audio/'
         subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "wav", "-o", out], capture_output=True)
+        directory = '/app'
+        with os.scandir(directory) as entries:
+          for entry in entries:
+            if entry.is_file():
+              print(f'{entry.name} ({entry.stat().st_size} bytes)')
+              st.write(entry.name)
         #--------------------------------------------------
         dfinfo=ytdata(url)
         df1=extract_features_orig(fname)
