@@ -1,7 +1,3 @@
-import sys
-import subprocess
-import pkg_resources
-
 subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'streamlit','librosa','numba'])
 import sys
 import subprocess
@@ -24,6 +20,10 @@ proc = subprocess.Popen('pip install pytube3 --upgrade',
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
 proc = subprocess.Popen('pip install urllib',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+proc = subprocess.Popen('-m pip install spleeter',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
