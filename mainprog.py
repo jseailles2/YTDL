@@ -34,7 +34,10 @@ proc = subprocess.Popen('pip install ffmpeg',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
-
+proc = subprocess.Popen('conda install librosa',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
 
 
 
