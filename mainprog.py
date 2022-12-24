@@ -186,15 +186,18 @@ def youtube2mp3 (url,outdir,fname,Token):
           #--------------------------------------------------
         fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
-        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
-        audio_file = open(fname, 'rb')
+        #subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
+        proc = subprocess.Popen('spleeter separate '+ fname +" -p spleeter:5stems -c mp3 -o out",
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+        audio_file = open(fext+'vocals.mp3', 'rb')
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format='mp3')
         user_input=st.text_input(fname)
         
+        list_directories(out)
         list_files(out)
-        list_files(fname)
-        list_directories(cwd)
     
         #--------------------------------------------------
         dfinfo=ytdata(url)
