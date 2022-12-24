@@ -74,6 +74,7 @@ def list_files(startpath):
 def list_directories(startpath):
     for root, dirs, files in os.walk(startpath):
         st.write(root)
+        list_files(root)
 
 
 
