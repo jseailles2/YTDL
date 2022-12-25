@@ -231,7 +231,7 @@ def youtube2mp3 (url,outdir,fname,Token):
         l1=get_file_list('/app')
         subprocess.run(["spleeter", "separate",fname,"-p","spleeter:2stems","-c","mp3","-o",out], capture_output=True)
         L2=get_file_list('/app')
-        compare_list(L1,L2)
+        compare_lists(L1,L2)
         audio_file = open(fname, 'rb')
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format='mp3')
