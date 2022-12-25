@@ -211,9 +211,9 @@ def youtube2mp3 (url,outdir,fname,Token):
           #--------------------------------------------------
         fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
-        list1 = get_file_list('/app')
-        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", outdir], capture_output=True)
-        list2 = get_file_list('/app')
+        list1 = get_file_list(out)
+        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
+        list2 = get_file_list(out)
         compare_lists(list1, list2)
         audio_file = open(fname, 'rb')
         audio_bytes = audio_file.read()
@@ -226,9 +226,9 @@ def youtube2mp3 (url,outdir,fname,Token):
         #--------------------------------------------------
         dfinfo=ytdata(url)
         df1=extract_features_orig(fname)
-        
+        st.dataframe(data=df1)        
         user_input2=st.text_input(cwd)
-        df2=extract_features_spleeted(outdir+'/vocals.wav','vocals')
+        df2=extract_features_spleeted(out+'vocals.mp3','vocals')
         df3=extract_features_spleeted(fext+'drums.wav','drums')
         df4=extract_features_spleeted(fext+'piano.wav','other')
         df5=extract_features_spleeted(fext+'piano.wav','piano')
