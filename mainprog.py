@@ -31,6 +31,15 @@ proc = subprocess.Popen('-m pip install spleeter',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
+proc = subprocess.Popen('pip install spleeter',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+proc = subprocess.Popen('pip install pysoundfile',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+
 
 
 
@@ -219,7 +228,7 @@ def youtube2mp3 (url,outdir,fname,Token):
           #--------------------------------------------------
         fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
-        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
+        subprocess.run(["spleeter", "separate","-p","spleeter:5stems","-c","mp3","-o",out,fname], capture_output=True)
         audio_file = open(fname, 'rb')
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format='mp3')
