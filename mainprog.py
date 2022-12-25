@@ -228,7 +228,7 @@ def youtube2mp3 (url,outdir,fname,Token):
           #--------------------------------------------------
         fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
-        l1=get_file_list('/app')
+        L1=get_file_list('/app')
         subprocess.run(["spleeter", "separate",fname,"-p","spleeter:2stems","-c","mp3","-o",out], capture_output=True)
         L2=get_file_list('/app')
         compare_lists(L1,L2)
