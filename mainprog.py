@@ -6,10 +6,7 @@ proc = subprocess.Popen('pip install numba',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE)
-proc = subprocess.Popen('-m pip install spleeter',
-                        shell=True, stdin=subprocess.PIPE,
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE)
+subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'spleeter'])
 proc = subprocess.Popen('pip install pathlib',
                         shell=True, stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
@@ -215,12 +212,7 @@ def youtube2mp3 (url,outdir,fname,Token):
         fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
         list1 = get_file_list(cwd)
-        #subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
-        proc = subprocess.Popen('spleeter separate /app/ytdl/audio/aO_nmfMc2y4/aO_nmfMc2y4.mp3 -p spleeter:5stems -c mp3 -o /app/ytdl/audio/aO_nmfMc2y4',
-                        shell=True, stdin=subprocess.PIPE,
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE)
-        
+        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
         list2 = get_file_list(cwd)
         compare_lists(list1, list2)
         audio_file = open(fname, 'rb')
