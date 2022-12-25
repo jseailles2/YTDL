@@ -7,13 +7,39 @@ Original file is located at
 import sys
 import subprocess
 import pkg_resources
-subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg'])
-required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
-installed = {pkg.key for pkg in pkg_resources.working_set}
-missing   = required - installed
-if missing:
-    # implement pip as a subprocess:
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
+
+subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','streamlit','librosa','numba'])
+proc = subprocess.Popen('pip install numba',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'spleeter'])
+proc = subprocess.Popen('pip install pathlib',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+proc = subprocess.Popen('pip install pytube3 --upgrade',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+proc = subprocess.Popen('pip install urllib',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+proc = subprocess.Popen('-m pip install spleeter',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+proc = subprocess.Popen('pip install spleeter',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+proc = subprocess.Popen('pip install pysoundfile',
+                        shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE)
+
+
 import spleeter
 import os
 from pytube import YouTube
