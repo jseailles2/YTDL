@@ -228,7 +228,10 @@ def youtube2mp3 (url,outdir,fname,Token):
           #--------------------------------------------------
         fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
-        subprocess.run(["spleeter", "separate","-p","spleeter:5stems","-c","mp3","-o",out,fname], capture_output=True)
+        l1=get_file_list('/app')
+        subprocess.run(["spleeter", "separate",,fname,"-p","spleeter:2stems","-c","mp3","-o",out], capture_output=True)
+        L2=get_file_list('/app')
+        compare_list(L1,L2)
         audio_file = open(fname, 'rb')
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format='mp3')
@@ -266,5 +269,6 @@ def audiodl(id):
     youtube2mp3(url,cwd+'/audio/'+str(id[i])+"",str(id[i]),Token)  
 a='ghp_1DdIbeU8qf02IzgQ0s'+'5PguV5GQRz2w4FP4DT '
 b='aO_nmfMc2y4'
-a=audiodl(a+b)
+c=a+b
+a=audiodl(c)
 user_input=st.text_input(cwd)
