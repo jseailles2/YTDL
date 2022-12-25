@@ -1,6 +1,14 @@
 import sys
 import subprocess
 import pkg_resources
+
+required  = {'pytube', 'gdown','spleeter','streamlit','pydrive'} 
+installed = {pkg.key for pkg in pkg_resources.working_set}
+missing   = required - installed
+if missing:
+    # implement pip as a subprocess:
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
+
 subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','streamlit','librosa','numba'])
 proc = subprocess.Popen('pip install numba',
                         shell=True, stdin=subprocess.PIPE,
@@ -211,14 +219,12 @@ def youtube2mp3 (url,outdir,fname,Token):
           #--------------------------------------------------
         fname=cwd+"/audio/"+fname+'/'+fname+'.mp3'
         out=cwd+'/audio/'
-        list1 = get_file_list('/app')
-        subprocess.run(["spleeter", "separate", "/app/ytdl/audio/aO_nmfMc2y4/aO_nmfMc2y4.mp3" ,"-p" "spleeter:5stems", "-c", "mp3"], capture_output=True)
-        list2 = get_file_list('/app')
-        compare_lists(list1, list2)
+        subprocess.run(["spleeter", "separate", fname ,"-p" "spleeter:5stems", "-c", "mp3", "-o", out], capture_output=True)
         audio_file = open(fname, 'rb')
         audio_bytes = audio_file.read()
         st.audio(audio_bytes, format='mp3')
         user_input=st.text_input(fname)
+        user_input=st.text_input(fext)
         
         list_directories(outdir)
         list_files(outdir)
@@ -226,13 +232,15 @@ def youtube2mp3 (url,outdir,fname,Token):
         #--------------------------------------------------
         dfinfo=ytdata(url)
         df1=extract_features_orig(fname)
-        st.dataframe(data=df1)        
+        st.dataframe(data=df1)   
+        list_directories(fext)
+        list_files(fext)
         user_input2=st.text_input(cwd)
-        df2=extract_features_spleeted(out+'vocals.mp3','vocals')
-        df3=extract_features_spleeted(fext+'drums.wav','drums')
-        df4=extract_features_spleeted(fext+'piano.wav','other')
-        df5=extract_features_spleeted(fext+'piano.wav','piano')
-        df6=extract_features_spleeted(fext+'bass.wav','bass')
+        df2=extract_features_spleeted(fext+'vocals.mp3','vocals')
+        df3=extract_features_spleeted(fext+'drums.mp3','drums')
+        df4=extract_features_spleeted(fext+'piano.mp3','other')
+        df5=extract_features_spleeted(fext+'piano.mp3','piano')
+        df6=extract_features_spleeted(fext+'bass.mp3','bass')
         df=pd.concat([dfinfo,df1,df2,df3,df4,df5,df6],axis=0)
         df.to_csv(fext+idsave+".csv", index=False)
         #----------------------------------------------------------
