@@ -191,7 +191,7 @@ def audiodl(id):
   for i in range(1,len(id)):
     url='www.youtube.com/watch?v='+id[i]
     youtube2mp3(url,cwd+'/audio/'+str(id[i])+"",str(id[i]),Token)  
-userinp=st.input('mets toi bien mon schwein','')
+userinp=st.text_input('mets toi bien mon schwein','')
 while len(userinp)==0:
   time.sleep(5)
 
