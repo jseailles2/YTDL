@@ -1,9 +1,0 @@
-pytube>=10.5.3
-requests==2.25.1
-numba
-numpy==1.22
-pandas
-scipy
-streamlit
-ffmpeg
-ffmpeg-python
