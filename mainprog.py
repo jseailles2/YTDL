@@ -5,7 +5,7 @@ import pkg_resources
 subprocess.run([sys.executable,"-m", 'apt' ,'install' ,'ffmpeg','google-api-python-client', 'google-auth-httplib2','google-auth-oauthlib','streamlit','librosa'])
 subprocess.run([sys.executable,"-m", 'pip' ,'install' ,'pytube', 'gdown','spleeter','streamlit','librosa'])
 
-    
+import streamlit as st  
 import tqdm
 from pytube import YouTube
 from pathlib import Path
